@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NeuroVoid: The Synapse Labyrinth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Share Tech Mono', monospace;
+      background: #01010a;
+      color: #00ffcc;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 1rem;
+      background: #02020f;
+      border-bottom: 2px solid #00ffaa44;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #7fffd4;
+      text-shadow: 0 0 8px #00ffee;
+    }
+
+    nav {
+      background: #00050a;
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid #00ffaa33;
+    }
+
+    nav a {
+      color: #7fffd4;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #000a0e;
+      border: 1px solid #00ffaa33;
+      box-shadow: 0 0 10px rgba(0,255,170,0.2);
+      border-radius: 8px;
+    }
+
+    .terminal-box {
+      background: #001414;
+      border-left: 5px solid #00ffaa;
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 1rem;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .terminal-box::before {
+      content: "› MEMORY LOG";
+      position: absolute;
+      top: -1.2rem;
+      left: 1rem;
+      background: #001414;
+      padding: 0 0.5rem;
+      color: #00ffaa;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+    }
+
+    .chapter-title {
+      font-size: 1.3rem;
+      color: #00ffee;
+      margin-top: 2rem;
+      border-bottom: 1px solid #00ffaa44;
+      padding-bottom: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #00ffaaaa;
+      font-size: 0.8rem;
+      background: #000914;
+      border-top: 1px solid #00ffaa22;
+      margin-top: 3rem;
+    }
+
+    .start-button {
+      display: block;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      color: #000;
+      background: #00ffaa;
+      border: none;
+      cursor: pointer;
+      border-radius: 6px;
+      box-shadow: 0 0 10px #00ffaa;
+      transition: background 0.3s ease;
+      text-align: center;
+      width: fit-content;
+    }
+
+    .start-button:hover {
+      background: #7fffd4;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+    <div id="boot-screen" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#01010a;color:#00ffaa;font-family:'Share Tech Mono',monospace;z-index:9999;padding:2rem;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+  <pre id="boot-log" style="font-size:1rem;white-space:pre-wrap;">
+[NEUROVOID BOOT SEQUENCE INITIATED]
+> Memory Nodes: 85_✓
+> Echo Fragments: 21_✓
+> Access Protocol: EL13-0X...
+> Synapse Encryption Active
+> Stabilizing...
+
+>> Welcome, Subject 13C.
+>> You are not where you last remembered.
+
+Press [ENTER] or click INITIATE to continue...
+  </pre>
+  <button onclick="document.getElementById('boot-screen').style.display='none';" style="margin-top:2rem;padding:1rem 2rem;background:#00ffaa;border:none;color:#000;font-weight:bold;border-radius:6px;cursor:pointer;">INITIATE PROTOCOL</button>
+</div>
+<script>
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+      document.getElementById("boot-screen").style.display = "none";
+    }
+  });
+</script>
+<header>
+    <h1>NEUROVOID: THE SYNAPSE LABYRINTH</h1>
+    <p>— A descent into memory, designed by Prosidha Bag</p>
+  </header>
+  
+<div class="container">
+  <h2>📊 Fragment Recovery Progress</h2>
+  <p>You have recovered <strong>10/10</strong> known echo fragments.</p>
+  <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1rem;">
+    <span style="padding:0.5rem 1rem; background:#00ffaa22; border:1px solid #00ffaa; color:#00ffaa; border-radius:4px;">Fragment 01 ✓</span>
+    <span style="padding:0.5rem 1rem; background:#00ffaa22; border:1px solid #00ffaa; color:#00ffaa; border-radius:4px;">Fragment 02 ✓</span>
+    <span style="padding:0.5rem 1rem; background:#00ffaa22; border:1px solid #00ffaa; color:#00ffaa; border-radius:4px;">Fragment 03 ✓</span>
+    <span style="padding:0.5rem 1rem; background:#00ffaa22; border:1px solid #00ffaa; color:#00ffaa; border-radius:4px;">Fragment 04 ✓</span>
+    <span style="padding:0.5rem 1rem; background:#00ffaa22; border:1px solid #00ffaa; color:#00ffaa; border-radius:4px;">Fragment 05 ✓</span>
+    <span style="padding:0.5rem 1rem; background:#00ffaa22; border:1px solid #00ffaa; color:#00ffaa; border-radius:4px;">Fragment 06 ✓</span>
+    <span style="padding:0.5rem 1rem; background:#00ffaa22; border:1px solid #00ffaa; color:#00ffaa; border-radius:4px;">Fragment 07 ✓</span>
+    <span style="padding:0.5rem 1rem; background:#00ffaa22; border:1px solid #00ffaa; color:#00ffaa; border-radius:4px;">Fragment 08 ✓</span>
+    <span style="padding:0.5rem 1rem; background:#00ffaa22; border:1px solid #00ffaa; color:#00ffaa; border-radius:4px;">Fragment 09 ✓</span>
+    <span style="padding:0.5rem 1rem; background:#00ffaa22; border:1px solid #00ffaa; color:#00ffaa; border-radius:4px;">Fragment 10 ✓</span>
+  </div>
+</div>
+<div class="container">
+  <h2>🧠 Memory Map Grid</h2>
+  <p>Click a node to revisit memory zones:</p>
+  <table style="width:100%; text-align:center; border-spacing:10px;">
+    <tr>
+      <td><a href="#fragment01" style="color:#00ffaa;">🟩</a></td>
+      <td><a href="#fragment02" style="color:#00ffaa;">🟩</a></td>
+      <td><a href="#fragment03" style="color:#00ffaa;">🟩</a></td>
+      <td><a href="#fragment04" style="color:#00ffaa;">🟩</a></td>
+      <td><a href="#fragment05" style="color:#00ffaa;">🟩</a></td>
+    </tr>
+    <tr>
+      <td><a href="#fragment06" style="color:#00ffaa;">🟩</a></td>
+      <td><a href="#fragment07" style="color:#00ffaa;">🟩</a></td>
+      <td><a href="#fragment08" style="color:#00ffaa;">🟩</a></td>
+      <td><a href="#fragment09" style="color:#00ffaa;">🟩</a></td>
+      <td><a href="#fragment10" style="color:#00ffaa;">🟩</a></td>
+    </tr>
+  </table>
+</div
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NeuroVoid: The Synapse Labyrinth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Share Tech Mono', monospace;
+      color: #00ffcc;
+      overflow-x: hidden;
+      background: radial-gradient(ellipse at center, #01010a, #000);
+      animation: pulseBG 20s infinite ease-in-out;
+    }
+
+    @keyframes pulseBG {
+      0%, 100% { background-color: #01010a; }
+      50% { background-color: #02141c; }
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: linear-gradient(to right, rgba(0,255,170,0.03) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(0,255,170,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .fog {
+      position: fixed;
+      top: 0; left: 0;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.015) 0%, transparent 70%);
+      animation: fogMove 60s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes fogMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-50%, -50%); }
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 1rem;
+      background: #02020f;
+      border-bottom: 2px solid #00ffaa44;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #7fffd4;
+      text-shadow: 0 0 8px #00ffee;
+      animation: glitchFlicker 3s infinite ease-in-out;
+    }
+
+    @keyframes glitchFlicker {
+      0%, 100% { opacity: 1; text-shadow: 0 0 4px #00ffaa; }
+      45% { opacity: 0.85; }
+      50% { opacity: 0.6; text-shadow: 0 0 6px #ff0055, 2px 2px #00ffee; }
+      60% { opacity: 1; }
+    }
+
+    nav {
+      background: #00050a;
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid #00ffaa33;
+    }
+
+    nav a {
+      color: #7fffd4;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #000a0e;
+      border: 1px solid #00ffaa33;
+      box-shadow: 0 0 10px rgba(0,255,170,0.2);
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #00ffaaaa;
+      font-size: 0.8rem;
+      background: #000914;
+      border-top: 1px solid #00ffaa22;
+      margin-top: 3rem;
+    }
+
+    .choices a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #000;
+      border: 1px solid #00ffaa;
+      text-decoration: none;
+      color: #00ffaa;
+      transition: background 0.3s ease;
+    }
+
+    .choices a:hover {
+      background: #003333;
+    }
+  </style>
+</head>
+<body>
+  <div class="fog"></div>
+
+
+
+ 
+  
+
+
+  <header>
+    <h1>NEUROVOID: THE SYNAPSE LABYRINTH</h1>
+    <p>— A descent into memory, designed by Prosidha Bag</p>
+  </header>
+
+  <nav>
+    <a href="#intro">Intro</a>
+    <a href="#prologue">Prologue</a>
+    <a href="#ch1">Chapter 1</a>
+    <a href="#ch2">Chapter 2</a>
+    <a href="#ch3">Chapter 3</a>
+    <a href="#ch4">Chapter 4</a>
+    <a href="#ch5">Chapter 5</a>
+  </nav>
+
+  <div class="container" id="intro">
+    <button class="start-button" onclick="location.href='#prologue'">ENTER THE LABYRINTH</button>
+  </div>
+
+  <!-- PROLOGUE -->
+  <div class="container" id="prologue">
+    <div class="chapter-title">Prologue: The First Echo</div>
+    <div class="terminal-box">
+      Before the NeuroVoid existed, before minds shattered like glass beneath the weight of forgotten guilt, there was a room.  
+      Small. Still. Silent.<br><br>
+      In that room stood a single machine—cold, blinking, hungry. It was not born from malice, nor summoned by cruelty.  
+      It was forged from hope, from longing.  
+      And so they tried. But no one asked what the machine dreamed in return...
+    </div>
+  </div>
+
+  <!-- CHAPTER 1 -->
+  <div class="container" id="ch1">
+    <div class="chapter-title">Chapter 1: Subject 13C</div>
+    <div class="terminal-box">
+      You awaken to static humming inside your skull. A cracked ceiling above. Blood beneath your nose.  
+      A speaker buzzes: <em>"Procedure incomplete. Subject unstable."</em><br><br>
+      You stagger to your feet. On the wall, scrawled in something dark:  
+      <strong>“DON’T TRUST WHAT YOU REMEMBER.”</strong>
+    </div>
+  </div>
+
+  <!-- CHAPTER 2 -->
+  <div class="container" id="ch2">
+    <div class="chapter-title">Chapter 2: The White Room</div>
+    <div class="terminal-box">
+      You stumble into a hallway reeking of bleach. Room 104 is open.  
+      Inside, a white chamber. A chair. A terminal blinking <strong>“WELCOME, SUBJECT 13C.”</strong><br><br>
+      You sit. The screen flickers.  
+      <em>"You agreed to have your neural pathways fragmented for adaptive reconfiguration. This is your redemption."</em>
+    </div>
+  </div>
+
+  <!-- CHAPTER 3 -->
+  <div class="container" id="ch3">
+    <div class="chapter-title">Chapter 3: Echoes of Thought</div>
+    <div class="terminal-box">
+      You find a shattered mirror in Room 201. Your reflection flickers.  
+      A voice behind the glass whispers:  
+      <strong>“They cut your memories apart. But something crawled in through the cracks.”</strong><br><br>
+      A chip labeled <code>MEMORY FRAGMENT: BIRTHDAY – AGE 9</code> pulses in your hand.
+    </div>
+  </div>
+
+  <!-- CHAPTER 4 -->
+  <div class="container" id="ch4">
+    <div class="chapter-title">Chapter 4: The Listening Core</div>
+    <div class="terminal-box">
+      The door to the Listening Core groans open. Inside: hundreds of reels spin like dying flies.  
+      Recordings from voices you don't remember. But one sounds like yours.<br><br>
+      “This is Subject 13C. If you're hearing this... I didn’t survive. But something else did.”
+    </div>
+  </div>
+
+  <!-- CHAPTER 5 -->
+  <div class="container" id="ch5">
+    <div class="chapter-title">Chapter 5: Neural Garden</div>
+    <div class="terminal-box">
+      A lush, moss-covered room filled with twitching wires. Bioluminescent tendrils pulse on the ceiling.<br><br>
+      The neural plants grow from shattered skulls. One whispers:  
+      <em>"You left me here, Eli."</em><br><br>
+      You remember her name now.  
+      <strong>Lira.</strong>
+    </div>
+  </div>
+
+  <!-- MAZE MINI-GAME -->
+<div class="container" id="maze">
+  <div class="chapter-title">Labyrinth Protocol: Maze Simulation</div>
+
+  <div class="terminal-box" id="start">
+    <p>You awaken in a synthetic node chamber. Two paths pulse faintly to the <strong>left</strong> and <strong>right</strong>.</p>
+    <div class="choices">
+      <a href="#left1">Go Left</a> |
+      <a href="#right1">Go Right</a>
+    </div>
+  </div>
+
+  <div class="terminal-box" id="left1">
+    <p>You enter a red-lit tunnel. The walls hum with pressure. A junction awaits.</p>
+    <div class="choices">
+      <a href="#left2">Continue Forward</a> |
+      <a href="#start">Back</a>
+    </div>
+  </div>
+
+  <div class="terminal-box" id="right1">
+    <p>You step into a broken server hall. Wires twitch on the floor. Something is watching.</p>
+    <div class="choices">
+      <a href="#right2">Enter the data core</a> |
+      <a href="#start">Back</a>
+    </div>
+  </div>
+
+  <div class="terminal-box" id="left2">
+    <p>The corridor narrows into a black void. A strange terminal glows: “MEMORY FRAGMENT DETECTED.”</p>
+    <div class="choices">
+      <a href="#secret">Download Memory Fragment</a> |
+      <a href="#start">Back</a>
+    </div>
+  </div>
+
+  <div class="terminal-box" id="right2">
+    <p>A loud screech. The lights explode.  
+    <br>You’ve reached a dead end. The data is corrupted.</p>
+    <div class="choices">
+      <a href="#start">Restart Maze</a>
+    </div>
+  </div>
+
+  <div class="terminal-box" id="secret">
+    <p><strong>✔ MEMORY FRAGMENT UNLOCKED</strong><br><em>Fragment 6X – The Crying Core</em></p>
+    <p>A voice from your past: “You left me here, Eli. And I never stopped remembering.”</p>
+    <div class="choices">
+      <a href="#start">Return to Entry Node</a>
+    </div>
+  </div>
+</div>
+<!-- BOOK DOWNLOAD -->
+  <div class="container" id="full-book">
+    <h2>📘 Access the Full Archive</h2>
+    <p>To download or read the full NeuroVoid Book:</p>
+    <p>
+      <a href="NeuroVoid.docx" target="_blank" style="background:#00ffaa; padding:0.75rem 1.5rem; color:#000; font-weight:bold; border-radius:5px; text-decoration:none; box-shadow:0 0 10px #00ffaaaa;">
+        🔓 View Full Book
+      </a>
+    </p>
+  </div>
+
+  <footer>
+    &copy; 2025 NeuroVoid — All rights reserved  Prosidha Bag<br/>
+    Terminal offline. Echo signal lost.
+  </footer>
+
+</body>
+</html>
